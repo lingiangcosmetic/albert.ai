@@ -1,0 +1,1073 @@
+// first step easing
+let firstEasing = 'easeOutSine';
+
+
+/////////////////////////////////
+// 1 step
+const firstSquareStepOne = {
+    targets: 'div.box.box-1--1',
+    translateZ: [
+    { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+    ],
+    translateY: [
+        { value: -80, duration: 0},
+    ],
+    scale: [2.2, 0.7, 1.2],
+    duration: 1200, //800
+    easing: firstEasing
+}
+
+const secondSquareStepOne = {
+    targets: 'div.box.box-2--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateY: [
+        { value: -80, duration: 0},
+    ],
+    scale: [2.2, 0.5, 1.7],
+    duration: 1300, // 900
+    easing: firstEasing,
+    // delay: 300,
+    offset: '-=1000' // 1000
+}
+
+const thirdSquareStepOne = {
+    targets: 'div.box.box-3--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+    ],
+    translateY: [
+        { value: -80, duration: 0 },
+    ],
+    scale: [2, 0.6, 2],
+    duration: 1500, // 1000
+    easing: firstEasing,
+    offset: '-=1000' // 800
+}
+
+const fourhSquareStepOne = {
+    targets: 'div.box.box-4--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+    ],
+    scale: [2.3, 0.5, 1.8],
+    duration: 1600, //
+    easing: firstEasing,
+    offset: '-=1200' //700
+}
+
+const fifthSquareStepOne = {
+    targets: 'div.box.box-5--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    scale: [1.5, 0.4, 1.5],
+    duration: 1400, // 900
+    easing: firstEasing,
+    offset: '-=1300' // 600
+}
+
+const sixthSquareStepOne = {
+    targets: 'div.box.box-6--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+    ],
+    scale: [1.4, 2.2, 0.7, 2.2],
+    duration: 1200, // 800
+    easing: firstEasing,
+    // delay: 100
+    offset: '-=1300'
+}
+
+const seventhSquareStepOne = {
+    targets: 'div.box.box-7--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+    ],
+    scale: [2.8, 1, 1.7],
+    duration: 1150, // 750
+    easing: firstEasing,
+    offset: '-=700'
+}
+
+const eighthSquareStepOne = {
+    targets: 'div.box.box-8--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+    ],
+    scale: [0.6, 2.5, 0.9],
+    duration: 1250, // 850
+    easing: firstEasing,
+    offset: '-=1050'
+}
+
+const ninethSquareStepOne = {
+    targets: 'div.box.box-9--1',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+    ],
+    scale: [0.7, 3, 1.2],
+    duration: 1350, //900
+    easing: firstEasing,
+    offset: '-=1000'
+}
+
+let firstAnimation = anime.timeline({loop: false})
+    .add(firstSquareStepOne)
+    .add(secondSquareStepOne)
+    .add(thirdSquareStepOne)
+    .add(fourhSquareStepOne)
+    .add(fifthSquareStepOne)
+    .add(sixthSquareStepOne)
+    .add(ninethSquareStepOne)
+    .add(eighthSquareStepOne)
+    .add(seventhSquareStepOne)
+
+/////////////////////////////////
+// 2 step
+
+// second step
+let secondDelay = 100;
+let secondDuration = 300;
+
+const firstSquareStepTwo = {
+    targets: 'div.box.box-1--2',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic' },
+        { value: -60, duration: 900, delay: secondDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: -80, duration: 0},
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic' },
+        { value: -40, duration: 2250, delay: secondDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: 1.2, duration: 0 },
+        { value: 1, duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: 0.5, duration: 1000, delay: 300, easing: 'easeInOutQuart' },
+        { value: 2, duration: 1000, easing: 'easeInOutQuart' },
+    ]
+};
+
+const secondSquareStepTwo = {
+    targets: 'div.box.box-2--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 0, duration: 0 },
+        { value: -20, duration: 450, delay: 1300, easing: 'linear'},
+        { value: 0, duration: 450, easing: 'linear'},
+    ],
+    translateY: [
+        { value: -80, duration: 0},
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: -40, duration: 900, delay: 900, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [1.7], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 0.5], duration: 500, delay: 900, easing: 'easeInOutQuart' },
+        { value: [2, 1.2], duration: 500, easing: 'easeInOutQuart' },
+    ]
+}
+
+const thirdSquareStepTwo = {
+    targets: 'div.box.box-3--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: 60, duration: 300, delay: 1000, easing: 'easeOutExpo'},
+        { value: 30, duration: 600, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: -80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: -70, duration: 900, delay: 1000, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [2], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 1.7], duration: 850, delay: 200, easing: 'easeInOutQuart' },
+        { value: [1.3], duration: 850, easing: 'easeInOutQuart' },
+    ]
+}
+
+const fourhSquareStepTwo = {
+    targets: 'div.box.box-4--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: -30, duration: 1200, delay: 800, easing: 'easeOutCubic'},
+    ],
+    translateY: [
+        { value: 0, duration: 0 },
+        { value: 10, duration: 600, delay: 1200, easing: 'easeOutCubic'},
+        { value: 0, duration: 600, easing: 'easeOutCubic'},
+    ],
+    scale: [
+        { value: [1.8], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 1.6], duration: 700, delay: 800, easing: 'easeInOutQuart' },
+        { value: [1.2], duration: 650, easing: 'easeInOutQuart' },
+    ]
+}
+
+const fifthSquareStepTwo = {
+    targets: 'div.box.box-5--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 0, duration: 0 },
+        { value: 30, duration: 1350, delay: 1300, easing: 'easeOutCubic'},
+    ],
+    translateY: [
+        { value: 0, duration: 0 },
+        { value: 10, duration: 750, delay: 1300, easing: 'easeOutCubic'},
+        { value: 0, duration: 600, easing: 'easeOutCubic'},
+    ],
+    scale: [
+        { value: [1.5], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 1.5], duration: 650, delay: 900, easing: 'easeInOutQuart' },
+        { value: [1.2], duration: 650, easing: 'easeInOutQuart' },
+    ]
+}
+
+const sixthSquareStepTwo = {
+    targets: 'div.box.box-6--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: 60, duration: 1200, delay: 900, easing: 'easeOutCubic'},
+    ],
+    translateY: [
+        { value: 0, duration: 0 },
+        { value: -30, duration: 750, delay: 1300, easing: 'easeOutCubic'},
+    ],
+    scale: [
+        { value: [2.2], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 1.4], duration: 600, delay: 900, easing: 'easeInOutQuart' },
+        { value: [1.1], duration: 600, easing: 'easeInOutQuart' },
+    ]
+}
+
+
+const seventhSquareStepTwo = {
+    targets: 'div.box.box-7--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: -50, duration: 1500, delay: 900, easing: 'easeOutCubic'},
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: 40, duration: 750, delay: 900, easing: 'easeOutCubic'},
+        { value: 30, duration: 750, easing: 'easeOutCubic'},
+    ],
+    scale: [
+        { value: [1.7], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 2.2], duration: 750, easing: 'easeInOutQuart' },
+        { value: [1], duration: 750, easing: 'easeInOutQuart' },
+    ]
+}
+
+const eighthSquareStepTwo = {
+    targets: 'div.box.box-8--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 0, duration: 0 },
+        { value: 20, duration: 750, delay: 1000, easing: 'linear'},
+        { value: 5, duration: 750, easing: 'linear'}
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: 55, duration: 1500, delay: 600, easing: 'easeOutCubic'},
+    ],
+    scale: [
+        { value: [0.9], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 1.5], duration: 850, delay: 400, easing: 'easeInOutQuart' },
+        { value: [0.5, 2], duration: 850, easing: 'easeInOutQuart' },
+    ]
+}
+
+
+const ninethSquareStepTwo = {
+    targets: 'div.box.box-9--2',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: 5, duration: 450, delay: 600, easing: 'easeOutCubic'},
+        { value: 45, duration: 1050, easing: 'easeOutCubic'}
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+        { value: 0, duration: secondDuration, delay: secondDelay, easing: 'easeOutCubic'},
+        { value: 30, duration: 1500, delay: 600, easing: 'easeOutCubic'},
+    ],
+    scale: [
+        { value: [0.9], duration: 0 },
+        { value: [1], duration: secondDuration, delay: secondDelay, easing: 'easeInOutQuart' },
+        { value: [1, 1.5], duration: 800, delay: 300, easing: 'easeInOutQuart' },
+        { value: [0.8, 1], duration: 800, easing: 'easeInOutQuart' },
+    ]
+}
+
+
+let secondAnimation = anime.timeline({loop: false})
+    .add(firstSquareStepTwo)
+    .add(secondSquareStepTwo)
+    .add(thirdSquareStepTwo)
+    .add(fourhSquareStepTwo)
+    .add(fifthSquareStepTwo)
+    .add(sixthSquareStepTwo)
+    .add(seventhSquareStepTwo)
+    .add(eighthSquareStepTwo)
+    .add(ninethSquareStepTwo)
+
+
+/////////////////////////////////
+// 3 step
+
+// third step
+let thirdDelay = 100; // 1900
+let thirdDuration = 1350; //900
+let squareScale = 2.5;
+let squareEasing = 'easeOutQuad';
+
+let colorGreen = '#CEFF00';
+let colorWhite ='#fff';
+let colorDarkBlue = '#001B56';
+let colorGrey = '#DCDCDC';
+let colorGreyMid = '#969696';
+let colorBLue = '#394CFF';
+
+let backgroundColorDuration = 300;
+let firstScaleDuration = 1000;
+let secondScaleDuration = 700;
+
+
+let thirdDelay_2 = 1000;
+let thirdDuration_2 = 300;
+
+
+const firstSquareStepThree = {
+    targets: 'div.box.box-1--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorWhite },
+        { value: colorGreen, delay: 1450, duration: backgroundColorDuration },
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -60, duration: 0 },
+        { value: -80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: -40, duration: 0 },
+        { value: -80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [2], duration: 1750 },
+        { value: [squareScale, 0.8], duration: firstScaleDuration, easing: squareEasing }, // 1700
+        { value: [2.4], duration: secondScaleDuration, easing: squareEasing },
+    ]
+}
+
+
+const secondSquareStepThree = {
+    targets: 'div.box.box-2--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorDarkBlue },
+        { value: colorGreen, delay: 1650, duration: backgroundColorDuration }, // 1950-300
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateY: [
+        { value: -40, duration: 0 },
+        { value: -80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [1.2], duration: 1950 },
+        { value: [squareScale, 0.6], duration: firstScaleDuration, easing: squareEasing }, // 1700
+        { value: [1.9], duration: secondScaleDuration },
+    ]
+}
+
+
+const thirdSquareStepThree = {
+    targets: 'div.box.box-3--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorGrey },
+        { value: colorGreen, delay: 1850, duration: backgroundColorDuration },
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 30, duration: 0 },
+        { value: 80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: -70, duration: 0 },
+        { value: -80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [1.3], duration: 2150 },
+        { value: [squareScale, 0.4], duration: firstScaleDuration, easing: squareEasing }, // 1700, delay 700
+        { value: [1.4], duration: secondScaleDuration },
+    ]
+}
+
+const sixthSquareStepThree = {
+    targets: 'div.box.box-6--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorGreen }
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 60, duration: 0 },
+        { value: 80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: -30, duration: 0 },
+        { value: 0, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [1.1], duration: 2350 },
+        { value: [squareScale, 0.4], duration: firstScaleDuration, easing: squareEasing }, // 1700, delay 900
+        { value: [1.4], duration: secondScaleDuration },
+    ]
+}
+
+const ninethSquareStepThree = {
+    targets: 'div.box.box-9--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorGreen }
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 45, duration: 0 },
+        { value: 80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: 40, duration: 0 },
+        { value: 80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [1.1], duration: 2550 },
+        { value: [squareScale, 0.4], duration: firstScaleDuration, easing: squareEasing }, // 1700, delay 1100
+        { value: [1.4], duration: secondScaleDuration },
+    ]
+}
+
+const eighthSquareStepThree = {
+    targets: 'div.box.box-8--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorBLue },
+        { value: colorGreen, delay: 2450, duration: backgroundColorDuration },
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 5, duration: 0 },
+        { value: 0, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: 55, duration: 0 },
+        { value: 80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [2], duration: 2750 },
+        { value: [squareScale, 0.4], duration: firstScaleDuration, easing: squareEasing }, // 1700, delay 1300
+        { value: [2], duration: secondScaleDuration },
+    ]
+}
+
+
+const seventhSquareStepThree = {
+    targets: 'div.box.box-7--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorWhite },
+        { value: colorGreen, delay: 2850, duration: backgroundColorDuration },
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -50, duration: 0 },
+        { value: -80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: 30, duration: 0 },
+        { value: 80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+
+        { value: [2], duration: 3150 },
+        { value: [squareScale, 1.3], duration: firstScaleDuration, easing: squareEasing }, // 1700, delay 1500
+        { value: [2.5], duration: secondScaleDuration },
+    ]
+}
+
+
+const fourhSquareStepThree = {
+    targets: 'div.box.box-4--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorGreyMid },
+        { value: colorGreen, delay: 2850, duration: backgroundColorDuration },
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -30, duration: 0 },
+        { value: -80, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [1.2], duration: 3150 },
+        { value: [3], duration: firstScaleDuration, easing: squareEasing }, // 1700, delay 1300
+        { value: [2.8], duration: secondScaleDuration },
+    ]
+}
+
+const fifthSquareStepThree = {
+    targets: 'div.box.box-5--3',
+    offset: 0,
+    backgroundColor: [
+        { value: colorBLue },
+    ],
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 30, duration: 0 },
+        { value: 0, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    translateY: [
+        { value: 10, duration: 0 },
+        { value: 0, duration: thirdDuration, delay: thirdDelay, easing: 'easeOutExpo'},
+    ],
+    scale: [
+        { value: [1.2], duration: 1350 },
+    ],
+    opacity: 0,
+    easing: 'linear',
+    duration: 300,
+    delay: thirdDelay,
+}
+
+let thirdAnimation = anime.timeline({loop: false})
+    .add(firstSquareStepThree)
+    .add(secondSquareStepThree)
+    .add(thirdSquareStepThree)
+    .add(fourhSquareStepThree)
+    .add(fifthSquareStepThree)
+    .add(sixthSquareStepThree)
+    .add(seventhSquareStepThree)
+    .add(eighthSquareStepThree)
+    .add(ninethSquareStepThree)
+
+/////////////////////////////////
+// 4 step
+
+//////
+
+//fourth step
+let fourthDelay = 300; //1900, 300
+let fourthDelayForRotation = 2200;
+let fourthDuration = 300;
+let toCircleEasing = 'easeInElastic';
+let squareScaleRotate = 2.7;
+
+let rotateEasing = 'linear';
+let rotateDuration = 200;
+
+
+const firstSquareStepFour = {
+    targets: 'div.box.box-1--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },//
+        { value: -56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing },//
+    ],
+    translateY: [
+        { value: -80, duration: 0 },//
+        { value: -56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing },//
+
+    ],
+    scale: [
+        { value: [2.4], duration: 50 },//
+        { value: [2.4, 1.8], duration: rotateDuration, delay: 800 },// было 200 -> 200+600
+        { value: [1.8, 2.2], duration: rotateDuration, delay: 850 }, //
+        { value: [2.2, 2], duration: rotateDuration, delay: 850 },
+
+    ],
+    rotate: [
+        { value: 0, duration: 0 },//
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing },//
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing }, //
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+const secondSquareStepFour = {
+    targets: 'div.box.box-2--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateY: [
+        { value: -80, duration: 0 }, //
+    ],
+    scale: [
+        { value: [1.9], duration: 0 },//
+        { value: [1.9, 2.1], duration: rotateDuration, delay: 800 }, //
+        { value: [2.1, 2.4], duration: rotateDuration, delay: 850 }, //
+    ],
+    rotate: [
+        { value: 0, duration: 0 }, //
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing }, //
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing }, //
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+const thirdSquareStepFour = {
+    targets: 'div.box.box-3--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 }, //
+        { value: 56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing }, //
+    ],
+    translateY: [
+        { value: -80, duration: 0 }, //
+        { value: -56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing }, //
+    ],
+    scale: [
+        { value: [1.4], duration: 0 }, //
+        { value: [1.4, 1.7], duration: rotateDuration, delay: 800 }, //
+        { value: [1.7, 2.8], duration: rotateDuration, delay: 850 }, //
+
+    ],
+    rotate: [
+        { value: 0, duration: 0 },
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing },
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing },
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+
+const fourhSquareStepFour = {
+    targets: 'div.box.box-4--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+    ],
+    scale: [
+        { value: [2.8], duration: 0 },
+        { value: [2.8, 2.4], duration: rotateDuration, delay: 800 },
+        { value: [2.4, 1.8], duration: rotateDuration, delay: 850 },
+        { value: [1.8, 1.7], duration: rotateDuration, delay: 850 },
+    ],
+    rotate: [
+        { value: 0, duration: 0 },
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing },
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing },
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+
+const sixthSquareStepFour = {
+    targets: 'div.box.box-6--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+    ],
+    translateY: [
+        { value: 0, duration: 0 },
+    ],
+    scale: [
+        { value: [1], duration: 0 },
+        { value: [1, 1.4], duration: rotateDuration, delay: 800 },
+        { value: [1.4, 2.3], duration: rotateDuration, delay: 850 }
+    ],
+    rotate: [
+        { value: 0, duration: 0 },
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing },
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing },
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+const seventhSquareStepFour = {
+    targets: 'div.box.box-7--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -80, duration: 0 },
+        { value: -56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing },
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+        { value: 56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing },
+    ],
+    scale: [
+        { value: [2.5], duration: 0 },
+        { value: [2.5, 2.8], duration: rotateDuration, delay: 800 },
+        { value: [2.8, 2], duration: rotateDuration, delay: 850 },
+        { value: [2, 1.4], duration: rotateDuration, delay: 850 },
+    ],
+    rotate: [
+        { value: 0, duration: 0 },
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing },
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing },
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+const eighthSquareStepFour = {
+    targets: 'div.box.box-8--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 0, duration: 0 },
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+    ],
+    scale: [
+        { value: [2], duration: 0 },
+        { value: [2, 2.2], duration: rotateDuration, delay: 800 },
+        { value: [2.2, 2.8], duration: rotateDuration, delay: 850 },
+        { value: [2.8, 1.8], duration: rotateDuration, delay: 850 },
+    ],
+    rotate: [
+        { value: 0, duration: 0 },
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing },
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing },
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+
+const ninethSquareStepFour = {
+    targets: 'div.box.box-9--4',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 80, duration: 0 },
+        { value: 56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing },
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+        { value: 56, duration: fourthDuration, delay: fourthDelay, easing: toCircleEasing },
+    ],
+    scale: [
+        { value: [1.4], duration: 0 },
+        { value: [1.4], duration: rotateDuration, delay: 800 },
+        { value: [1.4, 2], duration: rotateDuration, delay: 850 },
+        { value: [2, 2.2], duration: rotateDuration, delay: 850 }
+
+    ],
+    rotate: [
+        { value: 0, duration: 0 },
+        { value: 45, duration: rotateDuration, delay: 800, easing: rotateEasing },
+        { value: 90, duration: rotateDuration, delay: 850, easing: rotateEasing },
+        { value: 135, duration: rotateDuration, delay: 850, easing: rotateEasing }
+    ]
+}
+
+let fourthAnimation = anime.timeline({loop: false})
+    .add(firstSquareStepFour)
+    .add(secondSquareStepFour)
+    .add(thirdSquareStepFour)
+    .add(fourhSquareStepFour)
+    .add(sixthSquareStepFour)
+    .add(seventhSquareStepFour)
+    .add(eighthSquareStepFour)
+    .add(ninethSquareStepFour)
+    .add({
+        targets: '.boxwrapper__testing',
+        offset: 0,
+        rotate: [
+            { value: 0, duration: 0 },
+            { value: -45, duration: rotateDuration, delay: 800, easing: rotateEasing }, // 50/800
+            { value: -90, duration: rotateDuration, delay: 850, easing: rotateEasing }, // 50/850
+            { value: -135, duration: rotateDuration, delay: 850, easing: rotateEasing } // 50/850
+        ]
+    })
+
+/////////////////////////////////
+// 5 step
+
+const firstSquareStepFive = {
+    targets: 'div.box.box-1--5',
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -56, duration: 0 },
+    ],
+    translateY: [
+        { value: -56, duration: 0 },
+        { value: 120, duration: 900, delay: 550, easing: 'easeInQuad'},
+    ],
+    scale: [
+        {value: [2.2], duration: 0},
+        {value: [2.2, 0], duration: 900, delay: 550, easing: 'easeInQuad'},
+    ]
+}
+
+const secondSquareStepFive = {
+    targets: 'div.box.box-2--5',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 0, duration: 0 },
+        { value: -55, duration: 660, delay: 1160, easing: 'linear' },
+    ],
+    translateY: [
+        { value: -86, duration: 0 },
+        { value: 105, duration: 600, delay: 550, easing: 'easeInQuad'},
+        { value: 45, duration: 225, delay: 670, easing: 'easeInQuad' },
+    ],
+    scale: [
+        {value: [2.2], duration: 0}, //
+        {value: [2.2, 0.5], duration: 600, delay: 550,easing: 'easeInQuad'},
+        {value: [0.5], duration: 600, easing: 'easeInQuad'},
+    ]
+}
+
+const thirdSquareStepFive = {
+    targets: 'div.box.box-3--5',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 56, duration: 0 },
+    ],
+    translateY: [
+        { value: -56, duration: 0 },
+        { value: 120, duration: 750, delay: 500, easing: 'easeInQuad'},
+    ],
+    scale: [
+        {value: [1.8], duration: 0},
+        {value: [1.8, 0], duration: 750, delay: 500, easing: 'easeInQuad'},
+    ]
+}
+
+const fourthSquareStepFive = {
+    targets: 'div.box.box-4--5',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -60, duration: 0 },
+        { value: -120, duration: 1200, delay: 1700 },
+    ],
+    translateY: [
+        { value: 20, duration: 0 },
+        { value: 80, duration: 800, delay: 900, easing: 'easeInQuad'},
+        { value: 100, duration: 0},
+    ],
+    scale: [
+        {value: [2.8], duration: 0},
+        {value: [2.8, 2.8], duration: 800, delay: 900, easing: 'easeInQuad'},
+        {value: [2.8, 1.5], duration: 900, delay: 200, easing: 'easeInOutQuart'}
+    ]
+}
+
+const sixthSquareStepFive = {
+    targets: 'div.box.box-6--5',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 90, duration: 0 },
+        { value: 80, duration: 0, delay: 1325 },
+
+    ],
+    translateY: [
+        { value: 0, duration: 0 },
+        { value: 95, duration: 525, delay: 800, easing: 'easeInQuad'},
+        { value: 100, duration: 0},
+
+    ],
+    scale: [
+        {value: [1.4], duration: 0},
+        {value: [1.4], duration: 525, delay: 800, easing: 'easeInQuad'},
+        {value: [8], duration: 525, easing: 'easeInQuad'}
+    ]
+}
+
+const seventhSquareStepFive = {
+    targets: 'div.box.box-7--5',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: -56, duration: 0 },
+    ],
+    translateY: [
+        { value: 56, duration: 0 },
+        { value: 80, duration: 300, delay: 930, easing: 'easeInQuad'},
+    ],
+    scale: [
+        {value: [2.2], duration: 0},
+        {value: [2.2, 0], duration: 300, delay: 930, easing: 'easeInQuad'}
+    ],
+}
+
+const eighthSquareStepFive = {
+    targets: 'div.box.box-8--5',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 0, duration: 0},
+        { value: -60, delay: 1150, duration: 675,  easing: 'linear'},
+        { value: -60, duration: 0}
+    ],
+    translateY: [
+        { value: 80, duration: 0 },
+    ],
+    scale: [
+        {value: [1], duration: 0},
+        {value: [4], duration: 225, easing: 'easeInQuad', delay: 1825}
+    ]
+}
+
+const ninethSquareStepFive = {
+    targets: 'div.box.box-9--5',
+    offset: 0,
+    translateZ: [
+        { value: 0, duration: 0 },
+    ],
+    translateX: [
+        { value: 56, duration: 0 },
+    ],
+    translateY: [
+        { value: 56, duration: 0 },
+        { value: 80, duration: 600, delay: 700, easing: 'easeInQuad'},
+    ],
+    scale: [
+        {value: [1.7], duration: 0},
+        {value: [1.7, 0], duration: 600, delay: 700, easing: 'easeInQuad'}
+    ]
+}
+
+let fifthAnimation = anime.timeline({loop: false})
+    .add(firstSquareStepFive)
+    .add(secondSquareStepFive)
+    .add(thirdSquareStepFive)
+    .add(fourthSquareStepFive)
+    .add(sixthSquareStepFive)
+    .add(seventhSquareStepFive)
+    .add(eighthSquareStepFive)
+    .add(ninethSquareStepFive)

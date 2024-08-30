@@ -1,0 +1,200 @@
+// import { firstSquareStepTwo } from './squares';
+
+AOS.init({
+    disable: 'mobile',
+    once: false,
+    anchorPlacement: 'bottom-bottom',
+    mirror: true,
+    duration: 0,
+});
+
+let width = window.screen.availWidth;
+
+// screenSize = window.innerWidth;
+//
+// if(screenSize < 1400) {
+//   document.getElementById("trigger-header").innerText = "is your self-learning digital marketing ally";
+// }
+
+if (width >= 1050) {
+    jQuery(window).resize(function() {
+        //location.reload();
+    });
+
+    ////////////////////////////////
+    // ZERO
+
+    // document.addEventListener('aos:in:header-id', () => {
+    //     jQuery('.header__text-box--sub').each(function(){
+    //         jQuery(this).html(jQuery(this).html().split('').map(function(el) {return "<span class='letter'>" + el + "</span>"}))
+    //     });
+    //     anime.timeline({loop: false})
+    //         .add({
+    //             targets: '.header__text-box--sub .letter',
+    //             opacity: [0,1],
+    //             easing: "easeInOutQuad",
+    //             duration: 200,
+    //             delay: function(el, i) {
+    //                 return 50 * (i+1)
+    //             }
+    //         })
+    // }, {once: true});
+
+
+    ///////////////////////////////
+    // FIRST
+
+    document.addEventListener('aos:in:targeting-id', () => {
+        jQuery('.targeting__text-box--sub').each(function(){
+            jQuery(this).html(jQuery(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+        });
+        anime.timeline({loop: false})
+            .add({
+                targets: '.targeting__text-box--sub .letter',
+                opacity: [0,1],
+                easing: "easeInOutQuad",
+                duration: 200,
+                delay: function(el, i) {
+                    return 50 * (i+1)
+                }
+            })
+    }, {once: true});
+
+    document.addEventListener('aos:in:targeting-id', () => {
+        firstAnimation.restart();
+    });
+
+
+    ///////////////////////////////
+    // SECOND
+    document.addEventListener('aos:in:mediabuying-id', () => {
+        jQuery('.mediabuying__text-box--sub').each(function () {
+            jQuery(this).html(jQuery(this).text().replace(/([^\x00-\x250]|\w)/g, "<span class='letter'>$&</span>"));
+        });
+        anime.timeline({loop: false})
+            .add({
+                targets: '.mediabuying__text-box--sub .letter',
+                opacity: [0,1],
+                easing: "easeInOutQuad",
+                duration: 200,
+                delay: function(el, i) {
+                    return 50 * (i+1)
+                }
+            })
+    }, {once: true})
+
+    document.addEventListener('aos:in:mediabuying-id', () => {
+        secondAnimation.restart();
+    });
+
+
+    ///////////////////////////////
+    // THIRD
+    document.addEventListener('aos:in:crosschannel-id', () => {
+        jQuery('.crosschannel__text-box--sub').each(function(){
+            jQuery(this).html(jQuery(this).html().split('').map(function(el) {return "<span class='letter'>" + el + "</span>"}))
+        });
+        anime.timeline({loop: false})
+            .add({
+                targets: '.crosschannel__text-box--sub .letter',
+                opacity: [0,1],
+                easing: "easeInOutQuad",
+                duration: 200,
+                delay: function(el, i) {
+                    return 50 * (i+1)
+                }
+            })
+    }, {once: true})
+
+    document.addEventListener('aos:in:crosschannel-id', () => {
+        thirdAnimation.restart();
+    });
+
+
+    ///////////////////////////////
+    // FOURTH
+    document.addEventListener('aos:in:testing-id', () => {
+        jQuery('.testing__text-box--sub').each(function(){
+            jQuery(this).html(jQuery(this).text().replace(/([^\x00-\x250]|\w)/g, "<span class='letter'>$&</span>"));
+        });
+        anime.timeline({loop: false})
+            .add({
+                targets: '.testing__text-box--sub .letter',
+                opacity: [0,1],
+                easing: "easeInOutQuad",
+                duration: 200,
+                delay: function(el, i) {
+                    return 50 * (i+1)
+                }
+            })
+    }, {once: true})
+
+    document.addEventListener('aos:in:testing-id', () => {
+        fourthAnimation.restart();
+    });
+
+
+    ///////////////////////////////
+    // FIFTH
+    document.addEventListener('aos:in:analytics-id', () => {
+        jQuery('.analytics__text-box--sub').each(function(){
+            jQuery(this).html(jQuery(this).text().replace(/([^\x00-\x250]|\w)/g, "<span class='letter'>$&</span>"));
+        });
+        anime.timeline({loop: false})
+            .add({
+                targets: '.analytics__text-box--sub .letter',
+                opacity: [0,1],
+                easing: "easeInOutQuad",
+                duration: 200,
+                delay: function(el, i) {
+                    return 50 * (i+1)
+                }
+            })
+    }, {once: true});
+
+    document.addEventListener('aos:in:analytics-id', () => {
+        fifthAnimation.restart();
+    });
+}
+
+function changeText(text) {
+  document.getElementById("trigger-header").innerHTML = `${text}`;
+
+  jQuery('.header__text-box--sub').each(function(){
+    jQuery(this).html(jQuery(this).html().split('').map(function(el) {return "<span class='letter'>" + el + "</span>"}))
+  });
+  anime.timeline({loop: false})
+    .add({
+      targets: '.header__text-box--sub .letter',
+      opacity: [0,1],
+      easing: "easeInOutQuad",
+      duration: 200,
+      delay: function(el, i) {
+        return 25 * (i+1)
+      }
+    })
+
+}
+
+	function getParameterByName(name, url) {
+		if (!url) url = window.location.href;
+		name = name.replace(/[\[\]]/g, '\\$&');
+		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+			results = regex.exec(url);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, ' '));
+	}
+
+        var urlString =  window.location.href;
+        var url = new URL(urlString);
+		var utm_source = getParameterByName('utm_source');
+        var utm_medium = getParameterByName('utm_medium');
+        var utm_campaign = getParameterByName('utm_campaign');
+        var utm_term = getParameterByName('utm_term');
+
+        // Put the variable names into the hidden fields in the form.
+        document.getElementById("utm_source").value = utm_source;
+        document.getElementById("utm_medium").value = utm_medium;
+        document.getElementById("utm_campaign").value = utm_campaign;
+		document.getElementById("utm_term").value = utm_term

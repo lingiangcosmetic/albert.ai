@@ -1,0 +1,60 @@
+/**
+ * Scripts for the product page
+ */
+(function ($) {
+    function toggleItem(el) {
+        if ($(el).data('toogled') == undefined || $(el).data('toogled') == false) {
+            $(el).data('toogled', true);
+            $(el).css('display', 'block');
+            setTimeout(function () {
+                $(el).css('opacity', '1');
+            }, 30);
+            let arrowElements = Array.from($('.arrow.' + el.split('.')[2]));
+            arrowElements.forEach(e => {
+                if ($(e).hasClass('arrowEnd')) {
+                    $(e).css('fill', '#C8FE27');
+                } else {
+                    $(e).css('stroke', '#C8FE27');
+                }
+            });
+            allowClosePopup=false;
+            $('.popupContainer .text').html($(el).html());
+            $('.popupMainContainer').addClass('active');
+            setTimeout(function () {
+                allowClosePopup=true;
+            },100);
+        } else {
+            $(el).data('toogled', false);
+            $(el).css('opacity', '0');
+            $(el).css('display', 'none');
+            let arrowElements = Array.from($('.arrow.' + el.split('.')[2]));
+            arrowElements.forEach(e => {
+                if ($(e).hasClass('arrowEnd')) {
+                    $(e).css('fill', '#808CFF');
+                } else {
+                    $(e).css('stroke', '#808CFF');
+                }
+            });
+        }
+    }
+
+	
+    let itemsTimeoutMap = new Map();
+    let itemsArr = ['abtesting', 'executiontask', 'campaignmanagement', 'strategictask', 'insightslearning', 'campaignguidance', 'strategicplanning'];
+    let allowClosePopup=false;
+
+	setTimeout(function(){
+		itemsArr.forEach(el => {
+			$(`.chartLine.${el}`).hover(function () {
+				toggleItem(`.descriptionItem.${el}`);
+			});
+		});
+    
+
+		$('.popupContainer .closeBtn,.popupMainContainer').click(function (e) {
+			if(e.target === this && allowClosePopup){
+				$('.popupMainContainer').removeClass('active');
+			}
+		});
+	},1500);
+})(jQuery);

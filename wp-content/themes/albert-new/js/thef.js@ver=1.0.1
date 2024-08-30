@@ -1,0 +1,84 @@
+(function ($) {
+    if (typeof MktoForms2 !== 'undefined') {
+        MktoForms2.whenReady(function (form) {
+            //////////////////////////////////
+            // work with inner text
+            const labelElements = document.getElementsByClassName('mktoLabel mktoHasWidth');
+            for (let i = 0; i < labelElements.length; i++) {
+                let text = labelElements[i].innerText;
+                labelElements[i].innerText = '';
+
+                let element = document.getElementsByClassName("mktoLabel mktoHasWidth")[i];
+                var newLabel = `<span>${text}</span>`;
+                element.insertAdjacentHTML('beforeend', newLabel)
+            }
+
+            const formEl = form.getFormElem()[0];
+
+            formEl.reset();
+
+            const rawFields = formEl.querySelectorAll('.mktoFormRow .mktoField');
+
+            const colWrapper = document.createElement('div');
+            colWrapper.classList.add('form-col-wrapper');
+            formEl.insertBefore(colWrapper, formEl.firstChild);
+
+            filterOutHidden(rawFields, colWrapper).forEach(field => {
+
+                handleFocus(field);
+
+                handleChange(field, formEl);
+
+            });
+        });
+    }
+
+
+    function filterOutHidden(rawFields, colWrapper) {
+        return Array.from(rawFields).filter(field => {
+            if (field.type !== 'hidden') {
+                colWrapper.appendChild(field.parentNode.parentNode.parentNode);
+                return true;
+            }
+            field.parentNode.classList.add('tf-hide');
+            return false;
+        });
+    }
+
+    function handleFocus(field) {
+        if (field.type === 'select-multiple') {
+            field.parentNode.querySelector('.mktoLabel').classList.add('tf-focused');
+        }
+
+        field.addEventListener('focusin', function () {
+            this.parentNode.querySelector('.mktoLabel').classList.add('tf-focused');
+        });
+
+        field.addEventListener('focusout', function () {
+            if (!this.value && this.type !== 'select-multiple') {
+                this.parentNode.querySelector('.mktoLabel').classList.remove('tf-focused');
+            }
+        });
+    }
+
+    function handleChange(field, formEl) {
+        field.addEventListener('change', function () {
+            const rawFieldsUpdated = formEl.querySelectorAll('.mktoFormRow .mktoField');
+            const fields = Array.from(rawFieldsUpdated).filter(field => {
+                if (field.type !== 'hidden') {
+                    return true;
+                }
+                field.parentNode.classList.add('tf-hide');
+                return false;
+            });
+
+            fields.forEach(field => {
+                handleFocus(field);
+            });
+        });
+    }
+})(jQuery);
+
+
+
+

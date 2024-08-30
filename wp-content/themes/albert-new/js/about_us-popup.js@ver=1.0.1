@@ -1,0 +1,61 @@
+function openPopup(teamMember) {
+  document.getElementById('about-us-main-wraper').style.display = 'none';
+  document.getElementById(teamMember).style.display = 'block';
+  location.hash = teamMember;
+}
+function closePopup(teamMember) {
+  document.getElementById('about-us-main-wraper').style.display = 'block';
+  document.getElementById(teamMember).style.display = 'none';
+  location.hash = '';
+}
+
+jQuery(document).ready(function($) {
+  if (window.history && window.history.pushState) {
+    $(window).on('popstate', function() {
+     	document.getElementById('about-us-main-wraper').style.display = 'block';
+  		document.getElementById(teamMember).style.display = 'none';
+  		location.hash = '';
+    });
+  }
+});
+
+
+window.addEventListener('keydown', (event)=> {
+  if (event.keyCode === 27) {
+    closePopup(numberClose);
+  }
+});
+
+var numberClose;
+
+function scrollAreaFunction(num) {
+  numberClose = num;
+
+  var interval;
+  var size;
+
+  if (window.screen.width < 800) {
+    interval = [4, 80];
+    size = '2.5';
+  } else if (window.screen.width >= 800 && window.screen.width <= 1399) {
+    interval = [25, 90];
+    size = '3';
+  } else if (window.screen.width > 1399) {
+    interval = [55, 120];
+    size = '4';
+  }
+
+  let className = "closeButton" + num;
+  window.addEventListener('scroll', () => {
+    let close = document.getElementById(className);
+    let top = close.getBoundingClientRect().top;
+    if (top && (interval[0] > top || top < interval[1])) {
+      document.getElementById(className).style.paddingRight = size + 'rem'
+    } else {
+      document.getElementById(className).style.paddingRight = '0'
+    }
+  });
+}
+window.addEventListener('resize', function (event) {
+  scrollAreaFunction(numberClose);
+});

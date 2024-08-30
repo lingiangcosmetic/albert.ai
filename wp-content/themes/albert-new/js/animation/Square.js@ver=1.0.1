@@ -1,0 +1,176 @@
+const COLORS = {
+  'cls-1': {
+    r: 255,
+    g: 255,
+    b: 255,
+  },
+  'cls-2': {
+    r: 0,
+    g: 180,
+    b: 255,
+  },
+  'cls-3': {
+    r: 206,
+    g: 255,
+    b: 0,
+  },
+  'cls-4': {
+    r: 210,
+    g: 210,
+    b: 210,
+  },
+  'cls-5': {
+    r: 150,
+    g: 150,
+    b: 150,
+  },
+  'cls-6': {
+    r: 57,
+    g: 76,
+    b: 255,
+  }
+};
+
+this.Square = (function (prevSquare) {
+  if (typeof prevSquare !== 'undefined') {
+    return prevSquare;
+  }
+
+  if (typeof Two === 'undefined') {
+    throw Error('Two.js library required');
+  }
+
+  const Square = function (params) {
+    const {pos, width, height, className} = params;
+    this.className = className;
+    this.shape = new Two.Rectangle(pos.x, pos.y, width, height);
+    this.shape.fill = rgb(COLORS[className]);
+    this.color = { ...COLORS[className] };
+    this.shape.noStroke();
+    this.currentPos = new Two.Vector().copy(pos);
+    this.anchor = new Two.Vector().copy(pos);
+    this.velocity = new Two.Vector();
+    this.maxSpeed = 100;
+    this.forces = {};
+    this.linkedTo = null;
+    this.animation = {};
+    return this;
+  };
+
+  Square.prototype.update = function () {
+    function makeStep(from, to, field, step) {
+      const diff = to[field] - from[field];
+      if (Math.abs(diff) <= step) {
+        from[field] += diff;
+        delete to[field];
+      } else {
+        from[field] += diff > 0 ? step : -step;
+      }
+    }
+
+    // Size Animation
+    const sizeStep = 0.2;
+    if (this.animation.hasOwnProperty('width')) {
+      makeStep(this.shape, this.animation, 'width', sizeStep)
+    }
+    if (this.animation.hasOwnProperty('height')) {
+      makeStep(this.shape, this.animation, 'height', sizeStep);
+    }
+
+    // Color animation
+    const colorStep = 20;
+    if (this.animation.color) {
+      if (Number.isInteger(this.animation.color.r)) {
+        makeStep(this.color, this.animation.color, 'r', colorStep);
+      }
+      if (Number.isInteger(this.animation.color.g)) {
+        makeStep(this.color, this.animation.color, 'g', colorStep);
+      }
+      if (Number.isInteger(this.animation.color.b)) {
+        makeStep(this.color, this.animation.color, 'b', colorStep);
+      }
+
+      this.shape.fill = rgb(this.color);
+
+      if (
+        !this.animation.color.hasOwnProperty('r') &&
+        !this.animation.color.hasOwnProperty('g') &&
+        !this.animation.color.hasOwnProperty('b')
+      ) {
+        delete this.animation.color;
+      }
+    }
+
+    this.velocity.copy(this.getForce());
+    this.maxSpeed = this.velocity.length() / (this.linkedTo ? 18 : 4);
+    if (this.velocity.length() > this.maxSpeed) {
+      this.velocity.setLength(this.maxSpeed);
+    }
+    this.currentPos.addSelf(this.velocity);
+    this.shape.translation = this.currentPos;
+
+    return this;
+  };
+  Square.prototype.updateProps = function (props) {
+    const {pos, width, height, className} = props;
+
+    this.animation.width = width;
+    this.animation.height = height;
+    this.animation.color = { ...COLORS[className] };
+
+    if (this.linkedTo) {
+      this.link = new Two.Vector().sub(new Two.Vector().copy(pos), this.linkedTo.anchor);
+      this.anchor = new Two.Vector().copy(pos);
+    } else {
+      this.anchor = new Two.Vector().copy(pos);
+    }
+
+    return this;
+  };
+  Square.prototype.resetForces = function () {
+    this.forces = {};
+    return this;
+  };
+  Square.prototype.getForce = function (id) {
+    if (id) {
+      if (!Object.hasOwnProperty.call(this.forces, id)) {
+        throw new Error(`square does not have force '${id}'`);
+      }
+      return this.forces[id];
+    }
+    return Object.values(this.forces)
+      .reduce((resultForce, force) => resultForce.addSelf(force), new Two.Vector());
+  };
+  Square.prototype.setForce = function (id, value) {
+    this.forces[id] = value;
+    return this;
+  };
+  Square.prototype.getSpeed = function () {
+    return this.velocity.length();
+  };
+  Square.prototype.linkTo = function (square) {
+    this.link = new Two.Vector().sub(this.currentPos, square.anchor);
+    this.linkedTo = square;
+    this.maxSpeed = Math.max(70000 / Math.pow(this.link.length(), 2), 3);
+    return this;
+  };
+  Square.prototype.updateLink = function () {
+    if (!this.linkedTo) {
+      throw new Error('no linked square');
+    }
+    const direction = new Two.Vector().sub(this.linkedTo.currentPos, this.currentPos);
+    const distance = this.link.length();
+    const delta = direction.length() - distance;
+    const resultForce = new Two.Vector()
+      .sub(direction, this.link)
+      .setLength(delta);
+    this.setForce('movement', resultForce);
+    return this;
+  };
+
+  return Square;
+})((typeof global !== 'undefined' ? global : this).Square);
+
+function rgb(rgb) {
+  return 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
+}

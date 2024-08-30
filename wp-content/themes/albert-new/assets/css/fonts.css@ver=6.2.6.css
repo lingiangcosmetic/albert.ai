@@ -1,0 +1,134 @@
+@font-face {
+    font-family: SharpSansDisplayNo1-Semibold;
+    src:
+    /*url(./fonts/SharpSansNo1-Semibold.otf),*/
+url(fonts/SharpSansDispNo1-Semibold.eot),
+url(fonts/SharpSansDispNo1-Semibold.woff),
+url(fonts/SharpSansDispNo1-Semibold.woff2);
+}
+
+@font-face {
+    font-family: SharpSansDisplayNo1-Bold;
+    src:
+            /*url(./fonts/SharpSansNo1-Bold.otf),*/
+    url(fonts/SharpSansDispNo1-Bold.eot),
+    url(fonts/SharpSansDispNo1-Bold.woff),
+    url(fonts/SharpSansDispNo1-Bold.woff2);
+}
+
+@font-face {
+    font-family: SharpSansDisplayNo1-Medium;
+    src: /*url(./fonts/SharpSansNo1-Medium.otf),*/ url(fonts/SharpSansDispNo1-Medium.eot),
+    url(fonts/SharpSansDispNo1-Medium.woff),
+    url(fonts/SharpSansDispNo1-Medium.woff2);
+}
+
+@font-face {
+    font-family: SharpSansDisplayNo1-Thin;
+    src:
+            /*url(./fonts/SharpSansDispNo1-Thin.otf),*/
+    url(fonts/SharpSansDispNo1-Thin.eot),
+    url(fonts/SharpSansDispNo1-Thin.woff),
+    url(fonts/SharpSansDispNo1-Thin.woff2);
+    font-style: normal;
+}
+
+@font-face {
+    font-family: SharpSansDisplayNo1-Book;
+    src: url(fonts/SharpSansDispNo1-Book.otf)
+    /*,*/
+    /*url(./fonts/SharpSansDispNo1-Thin.eot),*/
+    /*url(./fonts/SharpSansDispNo1-Thin.woff),*/
+    /*url(./fonts/SharpSansDispNo1-Thin.woff2);*/
+    /*font-style: normal;*/
+}
+
+@font-face {
+    font-family: SharpSansDisplayNo1-Light;
+    src: url(fonts/SharpSansDispNo1-Light.otf)
+    /*,*/
+    /*url(./fonts/SharpSansDispNo1-Thin.eot),*/
+    /*url(./fonts/SharpSansDispNo1-Thin.woff),*/
+    /*url(./fonts/SharpSansDispNo1-Thin.woff2);* /
+    /*font-style: normal;*/
+}
+
+/*@charset "UTF-8";*/
+
+@font-face {
+    font-family: "SharpSansDispNo1-Medium";
+    src: url("fonts/SharpSansDispNo1-Medium.eot");
+    src: url("fonts/SharpSansDispNo1-Medium.eot@") format("embedded-opentype"),
+    url("fonts/SharpSansDispNo1-Medium.woff") format("woff"),
+    url("fonts/SharpSansDispNo1-Medium.woff2") format("woff2");
+    font-weight: Medium;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SharpSansDispNo1-Semibold";
+    src: url("fonts/SharpSansDispNo1-Semibold.eot");
+    src: url("fonts/SharpSansDispNo1-Semibold.eot@") format("embedded-opentype"),
+    url("fonts/SharpSansDispNo1-Semibold.woff") format("woff"),
+    url("fonts/SharpSansDispNo1-Semibold.woff2") format("woff2");
+    font-weight: Semibold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: SharpSansDispNo1-Bold;
+    src: url("fonts/SharpSansDispNo1-Bold.eot");
+    src: url("fonts/SharpSansDispNo1-Bold.eot@") format("embedded-opentype"),
+    url("fonts/SharpSansDispNo1-Bold.woff") format("woff"),
+    url("fonts/SharpSansDispNo1-Bold.woff2") format("woff2");
+    font-weight: Bold;
+    font-style: normal;
+}
+
+@font-face {
+
+    font-family: 'SharpSansDispNo1';
+
+    src: url('fonts/SharpSansDispNo1-Bold.eot');
+
+    src: url('fonts/SharpSansDispNo1-Bold.eot@iefix') format('eot'),
+    url('fonts/SharpSansDispNo1-Bold.woff') format('woff'),
+    url('fonts/SharpSansDispNo1-Bold.otf') format('opentype');
+
+    font-weight: bold;
+
+    font-style: normal;
+
+}
+
+@font-face {
+
+    font-family: 'SharpSansDispNo1';
+
+    src: url('fonts/SharpSansDispNo1-Medium.eot');
+
+    src: url('fonts/SharpSansDispNo1-Medium.eot@iefix') format('eot'),
+    url('fonts/SharpSansDispNo1-Medium.woff') format('woff'),
+    url('fonts/SharpSansDispNo1-Medium.otf') format('opentype');
+
+    font-weight: normal;
+
+    font-style: normal;
+
+}
+
+@font-face {
+
+    font-family: 'SharpSansDispNo1';
+
+    src: url('fonts/SharpSansDispNo1-Semibold.eot');
+
+    src: url('fonts/SharpSansDispNo1-Semibold.eot@iefix') format('eot'),
+    url('fonts/SharpSansDispNo1-Semibold.woff') format('woff'),
+    url('fonts/SharpSansDispNo1-Semibold.otf') format('opentype');
+
+    font-weight: 600;
+
+    font-style: normal;
+
+}

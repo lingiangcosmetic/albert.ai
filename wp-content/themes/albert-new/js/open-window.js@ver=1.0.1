@@ -1,0 +1,210 @@
+
+(function () {
+    var gridElList = document.querySelectorAll('.grid__item-impact'),
+        scrollWrap = document.querySelector('.scroll-wrap-impact'),
+        docElem = window.document.documentElement,
+        contentElList = document.querySelectorAll('.content__item-impact');
+
+    function getViewport(axis) {
+        var client, inner;
+        if (axis === 'x') {
+            client = docElem['clientWidth'];
+            inner = window['innerWidth'];
+        } else if (axis === 'y') {
+            client = docElem['clientHeight'];
+            inner = window['innerHeight'];
+        }
+
+        return client < inner ? inner : client;
+    }
+
+    function scrollX() {
+        return window.pageXOffset || docElem.scrollLeft;
+    }
+
+    function scrollY() {
+        return window.pageYOffset || docElem.scrollTop;
+    }
+
+    function clickListener(index) {
+        var item = gridElList[index];
+
+        contentElList[index].classList.remove('hide-impact');
+        contentElList[index].classList.remove('box-display-impact');
+
+        scrollWrap.classList.remove('box-display-impact');
+
+        gridElList[index].classList.add('grid__item-clicked-impact');
+        document.querySelector('body').setAttribute('overflow', 'hidden');
+
+        var close = contentElList[index].querySelector('.opened-info-header-impact img');
+
+        setTimeout(function () {
+            var dummy = document.createElement('div');
+            dummy.className = 'dummy-placeholder';
+
+            var transform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth / document.body.offsetWidth + ',' + item.offsetHeight / getViewport('y') + ',1)';
+
+            dummy.style.WebkitTransform = transform;
+            dummy.style.transform = transform;
+            dummy.classList.add('placeholder--trans-in');
+
+            contentElList[index].classList.add('show-impact');
+            document.body.appendChild(dummy);
+
+            setTimeout(function () {
+                dummy.style.WebkitTransform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
+                dummy.style.transform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
+
+                setTimeout(function () {
+                    dummy.classList.remove('placeholder--trans-in');
+                    dummy.classList.add('placeholder--trans-out');
+
+                    function onCloseClick() {
+                        contentElList[index].classList.remove('show-impact');
+                        contentElList[index].classList.add('hide-impact');
+                        gridElList[index].classList.remove('grid__item-clicked-impact');
+                        setTimeout(function () {
+                            contentElList[index].classList.add('box-display-impact');
+                            scrollWrap.classList.add('box-display-impact');
+                            document.querySelector('body').setAttribute('overflow', 'auto');
+
+                            transform = 'translate3d(' + (item.offsetLeft) + 'px, ' + (item.offsetTop) + 'px, 0px) scale3d(' + item.offsetWidth / document.body.offsetWidth + ',' + item.offsetHeight / getViewport('y') + ',1)';
+
+                            dummy.style.WebkitTransform = transform;
+                            dummy.style.transform = transform;
+
+                            setTimeout(function () {
+                                document.body.removeChild(dummy);
+                                close.removeEventListener('click', onCloseClick);
+                                window.removeEventListener('keydown', onKeyDownClick);
+                                removeAnchor();
+                            }, 520);
+                        }, 370);
+                    }
+
+                    function onKeyDownClick(event) {
+                        if (event.keyCode === 27) {
+                            onCloseClick()
+                        }
+                    }
+
+                    close.addEventListener('click', onCloseClick);
+
+                    window.addEventListener('keydown', onKeyDownClick);
+
+                }, 10);
+            }, 25);
+
+        }, 500);
+    }
+
+    gridElList.forEach(function (item, index) {
+        item.addEventListener('click', function () {
+            clickListener(index)
+        })
+    });
+
+
+})();
+
+
+function openModalWindow(indexStr) {
+    var index = window.gridItems.indexOf(indexStr);
+    var gridElList = document.querySelectorAll('.grid__item-impact'),
+        scrollWrap = document.querySelector('.scroll-wrap-impact'),
+        docElem = window.document.documentElement,
+        contentElList = document.querySelectorAll('.content__item-impact');
+
+    function getViewport(axis) {
+        var client, inner;
+        if (axis === 'x') {
+            client = docElem['clientWidth'];
+            inner = window['innerWidth'];
+        } else if (axis === 'y') {
+            client = docElem['clientHeight'];
+            inner = window['innerHeight'];
+        }
+
+        return client < inner ? inner : client;
+    }
+
+    function scrollX() {
+        return window.pageXOffset || docElem.scrollLeft;
+    }
+
+    function scrollY() {
+        return window.pageYOffset || docElem.scrollTop;
+    }
+
+    var item = gridElList[index];
+
+    contentElList[index].classList.remove('hide-impact');
+    contentElList[index].classList.remove('box-display-impact');
+
+    scrollWrap.classList.remove('box-display-impact');
+
+    gridElList[index].classList.add('grid__item-clicked-impact');
+    document.querySelector('body').setAttribute('overflow', 'hidden');
+
+    var close = contentElList[index].querySelector('.opened-info-header-impact img');
+
+    setTimeout(function () {
+        var dummy = document.createElement('div');
+        dummy.className = 'dummy-placeholder';
+
+        var transform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth / document.body.offsetWidth + ',' + item.offsetHeight / getViewport('y') + ',1)';
+
+        dummy.style.WebkitTransform = transform;
+        dummy.style.transform = transform;
+        dummy.classList.add('placeholder--trans-in');
+
+        contentElList[index].classList.add('show-impact');
+        document.body.appendChild(dummy);
+
+        setTimeout(function () {
+            dummy.style.WebkitTransform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
+            dummy.style.transform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
+
+            setTimeout(function () {
+                dummy.classList.remove('placeholder--trans-in');
+                dummy.classList.add('placeholder--trans-out');
+
+                function onCloseClick() {
+                    contentElList[index].classList.remove('show-impact');
+                    contentElList[index].classList.add('hide-impact');
+                    gridElList[index].classList.remove('grid__item-clicked-impact');
+                    setTimeout(function () {
+                        contentElList[index].classList.add('box-display-impact');
+                        scrollWrap.classList.add('box-display-impact');
+                        document.querySelector('body').setAttribute('overflow', 'auto');
+
+                        transform = 'translate3d(' + (item.offsetLeft) + 'px, ' + (item.offsetTop) + 'px, 0px) scale3d(' + item.offsetWidth / document.body.offsetWidth + ',' + item.offsetHeight / getViewport('y') + ',1)';
+
+                        dummy.style.WebkitTransform = transform;
+                        dummy.style.transform = transform;
+
+                        setTimeout(function () {
+                            document.body.removeChild(dummy);
+                            close.removeEventListener('click', onCloseClick);
+                            window.removeEventListener('keydown', onKeyDownClick);
+                            removeAnchor();
+                        }, 520);
+                    }, 370);
+                }
+
+                function onKeyDownClick(event) {
+                    if (event.keyCode === 27) {
+                        onCloseClick()
+                    }
+                }
+
+                close.addEventListener('click', onCloseClick);
+
+                window.addEventListener('keydown', onKeyDownClick);
+
+            }, 10);
+        }, 25);
+
+    }, 500);
+}
